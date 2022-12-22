@@ -1,14 +1,19 @@
 import coffee_machine
+from menu import Menu
+from os import system
+
+def clear():
+    _ = system('cls')
+
 
 machine = coffee_machine.CoffeeMachine()
+menu = Menu(machine)
 
 
-def print_ingredient_report(machine):
-    report = machine.get_ingredient_report()
-    for item in report:
-        if item != "cash":
-            print(f"{item.title()}: {report[item][0]} {report[item][1]}")
-        else:
-            print(f"Money: ${report[item]}")
+while machine.is_on:
+    clear()
+    menu.render_menu()
+    selection = menu.get_selection()
+    menu.execute_action(selection)
 
-print_ingredient_report(machine)
+
