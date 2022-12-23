@@ -1,7 +1,4 @@
-class Menu():
-
-    # def __init__(self, machine):
-    #     self.machine = machine
+class Display():
 
     def print_ingredient_report(self, report):
         for item in report:
@@ -10,12 +7,19 @@ class Menu():
             else:
                 print(f"Money: ${report[item]}")
 
-    def render_menu(self):
+    def render_selection_menu(self):
         menu_selections = {
             "R": "Run inventory report",
             "T": "Turn off machine",
+            "D": "Make a drink",
         }
-        
+
         print("MENU OPTIONS: ")
         for option in menu_selections:
             print(f"{option}: {menu_selections[option]}")
+
+    def render_drink_menu(self, drink_list):
+        """renders a menu that displays all available drinks"""
+
+        for index, (drink, data) in enumerate(drink_list.items()):
+            print(f"{index + 1}: {drink.title()}, ${data['price']: .2f}")

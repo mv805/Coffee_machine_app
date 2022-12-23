@@ -4,24 +4,36 @@ from ingredient import Ingredient
 class CoffeeMachine():
 
     _ingredients = {
-        "water": (Ingredient("water", "ml"), 2500),
-        "milk": (Ingredient("milk", "ml"), 1000),
-        "coffee": (Ingredient("coffee", "g"), 500),
+        "water": (Ingredient("water", "ml"), 300),
+        "milk": (Ingredient("milk", "ml"), 500),
+        "coffee": (Ingredient("coffee", "g"), 1000),
         "honey": (Ingredient("honey", "oz"), 50),
     }
 
     _drinks = {
         "espresso": {
             "price": 2.50,
-            "ingredients": [("water", 10), ("milk", 30), ("coffee", 50)]
+            "ingredients": {
+                "water": 10,
+                "milk": 40,
+                "coffee": 200
+            }
         },
         "latte": {
             "price": 1.00,
-            "ingredients": [("water", 30), ("milk", 40), ("coffee", 10)]
+            "ingredients": {
+                "water": 10,
+                "milk": 100,
+                "coffee": 50
+            },
         },
         "cappuccino": {
             "price": 1.50,
-            "ingredients": [("water", 10), ("milk", 50), ("coffee", 100)]
+            "ingredients": {
+                "water": 10,
+                "milk": 50,
+                "coffee": 80
+            }
         },
     }
 
@@ -32,8 +44,13 @@ class CoffeeMachine():
         self.turn_on()
 
     def _get_remaining_of_ingredient(self, ingredient):
-        ingredient_to_check, quantity_remaining = self._ingredients[ingredient]
-        return quantity_remaining
+        return self._ingredients[ingredient][1]
+    
+    def get_drink_list(self):
+            return self._drinks
+    
+    def can_make_drink(self, drink):
+        pass
 
     def get_ingredient_report(self):
         report = {}
@@ -43,6 +60,9 @@ class CoffeeMachine():
 
         report["cash"] = self._cash
         return report
+    
+    def make_drink(self):
+        pass
 
     def turn_on(self):
         print("The coffee machine is turning on...")
