@@ -1,19 +1,20 @@
 import coffee_machine
 from menu import Menu
+from program import Program
 from os import system
+
 
 def clear():
     _ = system('cls')
 
 
 machine = coffee_machine.CoffeeMachine()
-menu = Menu(machine)
+menu = Menu()
+program = Program(machine, menu)
 
 
 while machine.is_on:
     clear()
     menu.render_menu()
-    selection = menu.get_selection()
-    menu.execute_action(selection)
-
-
+    selection = program.get_selection()
+    program.execute_selection(selection)
