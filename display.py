@@ -5,7 +5,7 @@ class Display():
             if item != "cash":
                 print(f"{item.title()}: {report[item][0]} {report[item][1]}")
             else:
-                print(f"Money: ${report[item]}")
+                print(f"Money: ${report[item]: .2f}")
 
     def render_selection_menu(self):
         menu_selections = {

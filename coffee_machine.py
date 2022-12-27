@@ -84,6 +84,7 @@ class CoffeeMachine():
             remaining_qty = self._ingredients[ingredient][1]
             new_qty = (remaining_qty - self._drinks[drink_to_make]['ingredients'][ingredient])
             self._ingredients[ingredient] = (Ingredient(ingredient, uom_of_ingredient), new_qty)
+        self._cash += self._drinks[drink_to_make]['price']
 
     def turn_on(self):
         print("The coffee machine is turning on...")
