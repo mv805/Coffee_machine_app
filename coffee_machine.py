@@ -57,7 +57,6 @@ class CoffeeMachine():
     
     def can_make_drink(self, drink_to_check):
         """Check to see if the machine has enough ingredients for the specified drink"""
-        #need to throw an error here if drink comes in thats not on the list
         
         for drink in self._drinks:
             if drink_to_check != drink:
