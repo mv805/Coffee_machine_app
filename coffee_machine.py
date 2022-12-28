@@ -57,7 +57,7 @@ class CoffeeMachine():
     
     def can_make_drink(self, drink_to_check):
         """Check to see if the machine has enough ingredients for the specified drink"""
-        #need to throw an error here if drink comes in thats not on the list
+        
         for drink in self._drinks:
             if drink_to_check != drink:
                 continue
@@ -79,6 +79,11 @@ class CoffeeMachine():
         return report
     
     def make_drink(self, drink_to_make):
+
+        # This function should not be called with a drink that is not available in the machine drink list
+        if drink_to_make not in self._drinks:
+            raise Exception("The Drink was not available in the machine. ")
+
         for ingredient in self._drinks[drink_to_make]['ingredients']:
             uom_of_ingredient = self._ingredients[ingredient][0].get_uom()
             remaining_qty = self._ingredients[ingredient][1]

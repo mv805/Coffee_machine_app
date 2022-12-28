@@ -25,8 +25,25 @@ class TestCoffeeMachine(unittest.TestCase):
         self.machine.make_drink('espresso')
         
         self.assertEqual(290, self.machine._ingredients['water'][1])
-        self.assertEqual(460, self.machine._ingredients['milk'][1])
+        self.assertEqual(10, self.machine._ingredients['milk'][1])
         self.assertEqual(800, self.machine._ingredients['coffee'][1])
+    
+    def test_raises_error_if_drink_not_avaliable(self):
+        self.assertRaises(Exception, self.machine.make_drink, "Test drink")
+
+
+    @classmethod
+    def tearDownClass(cls):
+        del cls.machine
+        
+class TestCoffeeMachineErrors(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.machine = CoffeeMachine()
+
+    def test_raises_error_if_drink_not_avaliable(self):
+        self.assertRaises(Exception, self.machine.make_drink, "Test drink")
 
 
     @classmethod
